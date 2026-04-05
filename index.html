@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LearnMate AI | Premium Learning</title>
+
+  <!-- Font Setup -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav id="navbar" class="hidden-on-login">
+    <div class="nav-brand" onclick="showPage('home')">
+      <h1>LearnMate <span>AI</span></h1>
+    </div>
+    <div class="nav-links">
+      <button class="nav-btn" onclick="showPage('home')">Home</button>
+      <button class="nav-btn" onclick="showPage('dashboard')">Dashboard</button>
+      <button class="nav-btn" onclick="showPage('practice')">Practice</button>
+      <button class="nav-btn" onclick="showPage('revision')">Revision</button>
+      <button class="nav-btn" onclick="showPage('planner')">Planner</button>
+    </div>
+    <div class="nav-actions">
+      <button class="nav-btn" onclick="showPage('chat')">AI Chat</button>
+      <button class="nav-btn" onclick="showPage('explain')">Ask AI</button>
+      <div class="status-indicator">
+        <span id="statusDot" class="dot"></span>
+        <span id="statusText">Online</span>
+      </div>
+      <button class="theme-toggle" onclick="toggleDarkMode()">🌒</button>
+      <button class="btn-primary login-btn" onclick="logout()">Logout</button>
+    </div>
+    <div class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</div>
+  </nav>
+
+  <div class="mobile-menu hidden" id="mobileMenu">
+    <button class="nav-btn" onclick="showPage('home'); toggleMobileMenu()">Home</button>
+    <button class="nav-btn" onclick="showPage('dashboard'); toggleMobileMenu()">Dashboard</button>
+    <button class="nav-btn" onclick="showPage('practice'); toggleMobileMenu()">Practice</button>
+    <button class="nav-btn" onclick="showPage('revision'); toggleMobileMenu()">Revision</button>
+    <button class="nav-btn" onclick="showPage('planner'); toggleMobileMenu()">Planner</button>
+    <button class="nav-btn" onclick="showPage('chat'); toggleMobileMenu()">AI Chat</button>
+    <button class="nav-btn" onclick="showPage('explain'); toggleMobileMenu()">Ask AI</button>
+    <button class="btn-primary" onclick="logout(); toggleMobileMenu()">Logout</button>
+  </div>
+
+  <main>
+    <!-- LOGIN PAGE -->
+    <section id="login" class="page active-page">
+      <div class="login-container">
+        <div class="login-card glass-card">
+          <div class="login-header">
+            <h2>Welcome to LearnMate <span>AI</span></h2>
+            <p>Your intelligent learning companion</p>
+          </div>
+          <div class="login-form">
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" placeholder="student@example.com" value="student@example.com">
+            </div>
+            <div class="form-group">
+              <label>Password</label>
+              <input type="password" placeholder="••••••••" value="demo123">
+            </div>
+            <button class="btn-primary full-width" onclick="doLogin()">Sign In</button>
+            <div class="auth-divider"><span>or continue with</span></div>
+            <button class="btn-secondary full-width">Sign up for Free</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LANDING PAGE (HOME) -->
+    <section id="home" class="page hidden">
+      <div class="hero-section">
+        <div class="hero-content">
+          <div class="badge">#1 AI Learning Platform 🚀</div>
+          <h1>Master Programming with <span class="highlight">LearnMate AI</span></h1>
+          <p>Interactive lessons in Python, C, and Java. Get instant AI feedback, practice offline, and track your
+            progress perfectly.</p>
+          <div class="hero-actions">
+            <button class="btn-primary huge-btn" onclick="showPage('dashboard')">Start Learning</button>
+            <button class="btn-secondary huge-btn" onclick="showPage('practice')">Try a Quiz</button>
+          </div>
+          <div class="stats-row">
+            <div class="stat"><span class="stat-num">3+</span> Subjects</div>
+            <div class="stat"><span class="stat-num">100%</span> Offline Support</div>
+            <div class="stat"><span class="stat-num">24/7</span> AI Tutor</div>
+          </div>
+        </div>
+        <div class="hero-illustration">
+          <!-- Illustration placeholder -> we'll use a CSS design or an image -->
+          <div class="floating-card python-card">🐍 Python</div>
+          <div class="floating-card java-card">☕ Java</div>
+          <div class="floating-card c-card">⚙️ C Lang</div>
+          <div class="hero-circle"></div>
+        </div>
+      </div>
+
+      <div class="features-section">
+        <h2>Why Choose LearnMate AI?</h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="icon">🤖</div>
+            <h3>AI-Powered</h3>
+            <p>Get explanations and debug help instantly from our Gemini AI integration.</p>
+          </div>
+          <div class="feature-card">
+            <div class="icon">📡</div>
+            <h3>Works Offline</h3>
+            <p>Lose the internet? No problem. Practice and review your stashed notes offline.</p>
+          </div>
+          <div class="feature-card">
+            <div class="icon">📈</div>
+            <h3>Track Progress</h3>
+            <p>Detailed performance analytics and dynamic weakness detection.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="how-it-works">
+        <h2>How It Works</h2>
+        <div class="flow-steps">
+          <div class="step">
+            <div class="step-num">1</div>
+            <h4>Pick a Subject</h4>
+            <p>Choose Python, C or Java.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <h4>Learn & Ask</h4>
+            <p>Read notes, use AI for clarity.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <h4>Practice</h4>
+            <p>Take exams and quizzes.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">4</div>
+            <h4>Revise</h4>
+            <p>Use flashcards to cement knowledge.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DASHBOARD -->
+    <section id="dashboard" class="page hidden">
+      <div class="dashboard-header">
+        <h1>Overview</h1>
+        <p>Welcome back! Here's how you are doing today.</p>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-box glass-card">
+          <div class="stat-icon">🎯</div>
+          <div class="stat-details">
+            <h4>Average Score</h4>
+            <h2 id="avgScoreDash">0%</h2>
+          </div>
+        </div>
+        <div class="stat-box glass-card">
+          <div class="stat-icon">📝</div>
+          <div class="stat-details">
+            <h4>Quizzes Attempted</h4>
+            <h2 id="attemptsDash">0</h2>
+          </div>
+        </div>
+        <div class="stat-box glass-card" id="weaknessBox">
+          <div class="stat-icon">💡</div>
+          <div class="stat-details">
+            <h4>Status</h4>
+            <h5 id="weakMsgDash">No data yet</h5>
+          </div>
+        </div>
+      </div>
+
+      <div class="dashboard-content">
+        <div class="subject-progress">
+          <h3>Your Subjects</h3>
+          <div class="progress-cards" id="dashSubjectCards">
+            <!-- Generated via JS -->
+          </div>
+        </div>
+
+        <div class="quick-actions glass-card">
+          <h3>Quick Actions</h3>
+          <div class="action-buttons">
+            <button class="btn-outline" onclick="showPage('practice')">Take a Quiz</button>
+            <button class="btn-outline" onclick="showPage('revision')">Revision Cards</button>
+            <button class="btn-outline" onclick="showPage('chat')">Ask AI Tutor</button>
+            <button class="btn-outline" onclick="showPage('exam')">Simulate Exam</button>
+          </div>
+
+          <h3 style="margin-top:20px">Recent Score History</h3>
+          <ul id="scoreHistoryDash" class="history-list"></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SUBJECTS SECTION REMOVED AS REQUESTED -->
+
+    <!-- PRACTICE PAGE -->
+    <section id="practice" class="page hidden">
+      <div class="page-header">
+        <h1>Practice Arena</h1>
+        <p>Test your skills with interactive quizzes.</p>
+      </div>
+
+      <div class="quiz-setup glass-card" id="quizSetup">
+        <h3>Configure Quiz</h3>
+        <div class="form-group">
+          <label>Select Subject to Practice:</label>
+          <select id="quizSubjectFilter" class="custom-select">
+            <option value="All">All Subjects</option>
+            <option value="Python">Python</option>
+            <option value="C">C</option>
+            <option value="C++">C++</option>
+            <option value="Java">Java</option>
+            <option value="DS">Data Structures</option>
+            <option value="HTML">HTML</option>
+            <option value="CSS">CSS</option>
+          </select>
+        </div>
+        <button class="btn-primary" onclick="startPracticeQuiz()">Start Quiz</button>
+      </div>
+
+      <div id="quizPlayArea" class="hidden">
+        <div class="quiz-header">
+          <h4>Question <span id="currentQNum">1</span> / <span id="totalQNum">10</span></h4>
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" id="quizProgressFill"></div>
+          </div>
+        </div>
+        <div id="quizBox" class="quiz-box glass-card"></div>
+        <div class="quiz-controls">
+          <button class="btn-secondary" id="btnPrevQ" onclick="prevQuizQuestion()">Previous</button>
+          <button class="btn-primary" id="btnNextQ" onclick="nextQuizQuestion()">Next</button>
+          <button class="btn-success hidden" id="btnSubmitQuiz" onclick="submitPracticeQuiz()">Submit Quiz</button>
+        </div>
+      </div>
+
+      <div id="quizResultArea" class="hidden">
+        <h2 class="result-title" id="resultTitle">Quiz Complete!</h2>
+        <div class="score-circle">
+          <h1 id="finalScoreVal">0/0</h1>
+        </div>
+
+        <div class="review-section" id="quizReviewBox">
+          <h3>Detailed Review</h3>
+          <!-- Review items generated dynamically -->
+        </div>
+
+        <div class="result-actions">
+          <button class="btn-primary"
+            onclick="showPage('practice'); document.getElementById('quizSetup').classList.remove('hidden'); document.getElementById('quizResultArea').classList.add('hidden');">Practice
+            Again</button>
+          <button class="btn-secondary" onclick="showPage('dashboard')">Back to Dashboard</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXAM MODE -->
+    <section id="exam" class="page hidden">
+      <div class="exam-header glass-card">
+        <div class="exam-title">
+          <h1>Strict Exam Simulation</h1>
+          <p>No going back. Time is ticking.</p>
+        </div>
+        <div class="timer-box">
+          <div class="timer-label">Time Left</div>
+          <div class="timer-value" id="examTimerDisplay">03:00</div>
+        </div>
+      </div>
+
+      <div id="examSetup">
+        <div class="glass-card text-center">
+          <h3>Ready to test yourself?</h3>
+          <p>You have 5 minutes to answer 15 questions. You cannot navigate back to previous questions.</p>
+          <button class="btn-primary huge-btn" style="margin-top: 20px" onclick="startExamMode()">Start Exam</button>
+        </div>
+      </div>
+
+      <div id="examPlayArea" class="hidden">
+        <div class="quiz-box glass-card" id="examBox"></div>
+        <button class="btn-primary full-width" style="margin-top: 20px" id="examNextBtn"
+          onclick="nextExamQuestion()">Confirm & Next Question</button>
+      </div>
+
+      <div id="examResultArea" class="hidden">
+        <div class="glass-card text-center">
+          <h2 id="examFinishReason">Exam Finished</h2>
+          <div class="score-circle">
+            <h1 id="examFinalScore">0/0</h1>
+          </div>
+          <button class="btn-primary" style="margin-top: 20px" onclick="showPage('dashboard')">Back to
+            Dashboard</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- REVISION PAGE -->
+    <section id="revision" class="page hidden">
+      <div class="page-header">
+        <h1>Revision Room</h1>
+        <p>Strengthen your memory with summaries and flashcards.</p>
+      </div>
+
+      <div class="revision-tabs">
+        <button class="tab-btn active" onclick="switchRevTab('flashcards', this)">Flashcards</button>
+        <button class="tab-btn" onclick="switchRevTab('formulas', this)">Cheat Sheets</button>
+      </div>
+
+      <div id="revFlashcards" class="rev-content">
+        <div class="filter-row">
+          <label>Filter by Subject:</label>
+          <select id="flashcardFilter" class="custom-select" onchange="loadFlashcards()">
+            <option value="All">All Topics</option>
+            <option value="Python">Python</option>
+            <option value="C">C</option>
+            <option value="C++">C++</option>
+            <option value="Java">Java</option>
+            <option value="DS">Data Structures</option>
+            <option value="HTML">HTML</option>
+            <option value="CSS">CSS</option>
+          </select>
+        </div>
+        <div class="flashcard-grid" id="flashcardGrid"></div>
+      </div>
+
+      <div id="revFormulas" class="rev-content hidden">
+        <div class="formulas-list" id="formulasList">
+          <!-- Populated via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- PLANNER PAGE -->
+    <section id="planner" class="page hidden">
+      <div class="page-header">
+        <h1>Study Schedule Planner 📅</h1>
+        <p>Organize your goals, tasks, and exam dates.</p>
+      </div>
+
+      <div class="planner-layout">
+        <div class="planner-setup glass-card">
+          <h3>Add New Task</h3>
+          <div class="form-group" style="margin-top:20px;">
+            <label>Task Description</label>
+            <input type="text" id="planTaskDesc" placeholder="e.g., Read Python Functions">
+          </div>
+          <div class="form-group">
+            <label>Subject (Optional)</label>
+            <select id="planTaskSubject" class="custom-select">
+              <option value="General">General</option>
+              <option value="Python">Python</option>
+              <option value="C">C</option>
+              <option value="C++">C++</option>
+              <option value="Java">Java</option>
+              <option value="DS">Data Structures</option>
+              <option value="HTML">HTML</option>
+              <option value="CSS">CSS</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Due Date</label>
+            <input type="date" id="planTaskDate">
+          </div>
+          <button class="btn-primary full-width" onclick="addScheduleTask()" style="margin-top:10px;">Add Task</button>
+        </div>
+
+        <div class="planner-list glass-card">
+          <h3>Your Schedule</h3>
+          <div id="scheduleContainer" class="schedule-container">
+            <!-- Tasks generated via JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI CHATBOT -->
+    <section id="chat" class="page hidden">
+      <div class="ai-container">
+        <div class="ai-header">
+          <h2>LearnMate AI Assistant Tutor 🤖</h2>
+          <span class="ai-status" id="aiChatStatus">Ready</span>
+        </div>
+        <div class="chat-window glass-card" id="chatArea">
+          <div class="message ai-msg">
+            <div class="msg-bubble">Hello! I am your LearnMate AI Tutor. You can ask me to explain code, debug
+              algorithms, or give examples! (Supports offline fallback)</div>
+          </div>
+        </div>
+        <div class="chat-input-area">
+          <input type="text" id="chatInputLine" placeholder="E.g., What is a pointer in C?"
+            onkeypress="handleChatEnter(event)">
+          <button class="btn-primary" onclick="triggerSendMessage()">Send</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI EXPLANATION -->
+    <section id="explain" class="page hidden">
+      <div class="ai-container" style="max-width: 800px;">
+        <div class="page-header">
+          <h1>Ask AI Explicitly 💡</h1>
+          <p>Need a topic broken down? Let our AI do it instantly.</p>
+        </div>
+
+        <div class="explain-form glass-card">
+          <input type="text" id="topicInputBox" class="large-input"
+            placeholder="Enter a concept (e.g. Recursion in Java)...">
+          <button class="btn-primary full-width" id="btnExplain" onclick="triggerExplanation()">Generate
+            Explanation</button>
+        </div>
+
+        <div id="explanationResults" class="hidden" style="margin-top: 30px;">
+          <div class="explanation-card simple-exp glass-card">
+            <div class="exp-badge mode-simple">Simple Version</div>
+            <div id="simpleExpText" class="markdown-body">Loading...</div>
+          </div>
+
+          <div class="explanation-card detailed-exp glass-card" style="margin-top: 20px;">
+            <div class="exp-badge mode-detailed">Detailed Version</div>
+            <div id="detailedExpText" class="markdown-body">Loading...</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FLOATING CHATBOT -->
+  <div class="chatbot-widget hidden-on-login" id="chatbotWidget">
+    <button class="chat-toggle-btn" onclick="toggleFloatingChat()">💬</button>
+    <div class="chat-popup glass-card hidden" id="floatingChat">
+      <div class="chat-popup-header">
+        <h4>SmartBot 🤖</h4>
+        <button class="close-btn" onclick="toggleFloatingChat()">✖</button>
+      </div>
+      <div class="chat-popup-body" id="floatChatArea">
+        <div class="message ai-msg">
+          <div class="msg-bubble">Hi! How can I help you today?</div>
+        </div>
+      </div>
+      <div class="chat-popup-input">
+        <input type="text" id="floatChatInput" placeholder="Quick question..."
+          onkeypress="if(event.key==='Enter') triggerFloatMessage()">
+        <button onclick="triggerFloatMessage()">▶</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer id="footer" class="hidden-on-login">
+    <div class="footer-content">
+      <div class="footer-brand">LearnMate <span>AI</span></div>
+      <p>&copy; 2026 LearnMate AI Platform. Adaptive Offline Learning.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
